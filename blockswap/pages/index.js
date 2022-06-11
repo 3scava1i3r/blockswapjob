@@ -1,9 +1,9 @@
 import contractABI from "../abi/contract.json"
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import Box from "../components/Box";
 
 import Web3 from "web3";
 import Web3Modal from "web3modal";
-
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
 
@@ -30,12 +30,9 @@ export default function Home() {
   const [info, setinfo] = useState([])
 
   //let authenticated = false
+  
 
-  const web3Modal = new Web3Modal({
-    providerOptions, // required
-    //displayNoInjectedProvider: true,
-    //disableInjectedProvider: true,
-  });
+  
 
   
   //const info = []
@@ -43,7 +40,11 @@ export default function Home() {
   const ff = async() => {
 
     
-
+    const web3Modal = new Web3Modal({
+      providerOptions, // required
+      //displayNoInjectedProvider: true,
+      //disableInjectedProvider: true,
+    });
     
     const provider = await web3Modal.connect();
     console.log(provider)
@@ -111,6 +112,12 @@ export default function Home() {
 
   console.log(acc)
   const signout = () => {
+
+    const web3Modal = new Web3Modal({
+      providerOptions, // required
+      //displayNoInjectedProvider: true,
+      //disableInjectedProvider: true,
+    });
     
     setauth(false)
     setacc("")
@@ -124,14 +131,18 @@ export default function Home() {
 
   return (
     <>
-    lksdnc
+    
     
     {(auth) ? 
       (
         <div>
             <button onClick={signout}>signout</button>
       {info.map(({ticker, image}) => (
-        <p>{ticker}'s url is {image}</p>
+        <div>
+            {/* <p>{ticker}'s url is {image}</p> */}
+            <Box tick={ticker} img={image}/>
+        </div>
+        
        ))}
 
         </div>
@@ -142,6 +153,9 @@ export default function Home() {
       :(
       <button onClick={ff}>Authenticate</button>
       )}
+
+
+      
     </>
   )
 }
