@@ -13,9 +13,11 @@
     "@walletconnect/web3-provider": "^1.7.8",
     "@web3-react/core": "^6.1.9",
     "axios": "^0.27.2",
+    "nes.css.14x": "^1.0.1",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "styled-components": "^4.1.3",
     "web3": "^1.7.3",
     "web3modal": "^1.9.7"
   },

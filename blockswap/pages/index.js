@@ -6,6 +6,12 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
+import Footer from "../components/Footer";
+
+import styled from "styled-components"
+
+
+
 
 const providerOptions = {
   walletconnect: {
@@ -28,6 +34,11 @@ export default function Home() {
   const [auth, setauth] = useState(false)
   const [acc, setacc] = useState("")
   const [info, setinfo] = useState([])
+  const [toggleState, setToggleState] = useState(1);
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
 
   //let authenticated = false
   
@@ -127,35 +138,338 @@ export default function Home() {
 
     //console.log(auth)
   }
+
+
   
+  
+
+
+
+
 
   return (
     <>
+    <Head>
+      {/* main header area */}
+
+      <Title className='rpgui-content'>
+        
+        <a href="#"><img src="https://brand.blockswap.network/static/media/logo-black.13afc5b5.svg"/></a>
+        
+        
+        <button className="rpgui-button">My Account</button>
+        
+      </Title>
+    </Head>
+      
+
+    {/*in between stats written section */}
+
+    
+      <Bod className="rpgui-content">
+
+      <div className="rpgui-container framed" >
+        <BigText>Brand Central Auction</BigText>
+        <TwoWay>
+            <Lside>
+              <UList>
+                <li>Blockswap is giving the first opportunity to claim a StakeHouse name on mainnet to SHB holders.</li>
+                <li>The auction will run for 5 days.</li>
+                <li>Each day 10 StakeHouse names can be proposed on a first come first serve basis.</li>
+              </UList>
+            </Lside>
+            <Rside>
+              <UList>
+                <li>In the last 200 blocks (approx 50 minutes) each additional bid will increase the time remaining by 100 blocks (approx 25 minutes) until someone loses the battle.</li>
+                <li>Minimum Bid increase is 2 SHB.</li>
+                <li>Additional details on the auction <a href="https://blog.blockswap.network/brand-central-auction-how-to-guide-3ac1f66564db">here</a>. Read <a href="https://blockswap.notion.site/blockswap/FAQ-Brand-Central-Auction-a5924cb32a114bbba53c0b27a77e1230">FAQ</a> here.</li>
+              </UList>
+            </Rside>
+        </TwoWay>
+        
+        <AucEnd className="rpgui-button" disabled type="button">
+            Auction has Ended
+        </AucEnd>
+
+        
+
+
+        <HR className="golden"/>
+
+        <div className="tabdiv">
+          <Spana className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab(1)}>
+            Show All</Spana>
+          <Spana className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab(2)}>My Tickers</Spana>
+          <Spana className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab(3)}>Battle Space</Spana>
+
+
+          <div id="Show" className="page">Show All</div>
+
+          <div id="Tick" className="">Ticker</div>
+
+          <div id="Battle" className="">Battle Space</div>
+        </div>
+
+          
+         
+      </div>
+        
+      </Bod>
+
+
+      {/* <Mid className="rpgui-content framed-grey">
+          <Mv>
+          
+          </Mv>
+              
+      </Mid> */}
+
+      
+
+    
+
+
+    
+
+    
+      
     
     
-    {(auth) ? 
-      (
+
+    
+
+    
+    {/* <footer classname="rpgui-content">
+            <Div>
+                <Al href="https://etherscan.io/address/0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd">Contract</Al>
+            </Div>
+            
+    </footer> */}
+    
+    
+    {/* tabs to change */}
+
+    {/* tabs underlying */}
+
+    {/* current block info */}
+    
+    
+
+
+    {/* footer */}
+
+    {/* <Footer /> */}
+
+    {/* <div className='rpgui-content container'>
+      <h1>bdkjcbwhdc</h1>
+      <hr className="golden"/>
+
+
+    </div> */}
+    
+    {/* {(auth) ? (
         <div>
             <button onClick={signout}>signout</button>
       {info.map(({ticker, image}) => (
-        <div>
+        <div> */}
             {/* <p>{ticker}'s url is {image}</p> */}
-            <Box tick={ticker} img={image}/>
-        </div>
+            {/* <Box tick={ticker} img={image}/> */}
+        {/* </div>
         
        ))}
 
         </div>
         
-      )
-      
-      
-      :(
-      <button onClick={ff}>Authenticate</button>
-      )}
-
-
-      
+      ):(<button onClick={ff}>Authenticate</button>)}    */}
     </>
   )
 }
+
+const Head = styled.header`
+    display: flex; 
+    align-items: center; 
+    height: 8rem; 
+    /* background-color: #34fefe; */
+    width:100%;
+
+`
+
+
+
+
+const Title = styled.div`
+    display: flex; 
+    
+    padding-left: 1.25rem;
+    padding-right: 1.25rem; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width:1200px;
+    max-height: 8rem;
+    /* background-color : #ffffff; */
+    
+
+`
+
+const Bod = styled.div`
+    display: flex; 
+    font-size: 0.92rem;
+    line-height: 1.75rem; 
+    flex-direction: column; 
+    flex-wrap: wrap; 
+    align-items: center; 
+    margin-top:10rem;
+
+    @media (min-width: 768px) { 
+      flex-wrap: nowrap; 
+    }
+
+`
+
+
+
+const BigText = styled.div`
+
+    margin-bottom: 0.25rem; 
+    margin-top: 6rem; 
+    font-size: 3rem;
+    line-height: 1; 
+    font-weight: 500;
+
+`
+const TwoWay = styled.div`
+
+    display: flex; 
+    margin-left: 1rem;
+    margin-right: 1rem; 
+    margin-bottom: 1rem; 
+    margin-top: 2.5rem; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    max-width:980px;
+
+    @media (min-width: 768px) { 
+      flex-wrap: nowrap; 
+    }
+
+
+
+`
+
+const Lside = styled.div`
+  margin-right : 3rem;
+
+    
+`
+
+const Rside = styled.div`
+  margin-left : 1rem;
+  max-width:490px;
+`
+
+
+
+const UList = styled.div`
+    margin-left: 1rem;
+
+`
+
+
+const Dbtn = styled.div`
+    margin-bottom: 4rem;
+`
+
+
+const AucEnd = styled.button`
+    display: block; 
+    padding-left: 0.75rem;
+    padding-right: 0.75rem; 
+    padding-top: 1.0rem;
+    padding-bottom: 1.25rem; 
+    margin-top: 1.75rem;
+    margin-bottom: 1rem;
+    margin-left:auto;
+    margin-right:auto; 
+    font-size: 0.95rem;
+    line-height: 1.5rem; 
+    line-height: 2rem; 
+    font-weight: 600; 
+    justify-content: center;
+    align-items: center; 
+    width: 24rem; 
+    height: 3.5rem; 
+    border-radius: 0.5rem; 
+
+`
+
+
+const HR = styled.hr`
+    
+    margin-bottom: 1rem; 
+    width: 100%; 
+    opacity: 0.9; 
+    max-width:1480px;
+
+`
+
+const Mid = styled.div`
+    display: block;
+    position:relative;
+    margin-top:40rem;
+    margin-bottom: 2rem; 
+    font-size: 1.05rem;
+    line-height: 1.75rem; 
+    justify-content: center; 
+    margin-right:auto;
+    margin-left:auto;
+    align-items:center;
+    
+
+`
+
+const Mv = styled.div`
+    display:block;
+    position:relative;
+    justify-content: center; 
+    margin-right:auto;
+    margin-left:auto;
+    align-items:center;
+
+`
+
+const Spana = styled.button`
+
+    justify-content:center;
+    align-items:center;
+    margin-left:07%;
+
+`
+
+
+
+
+// const Foot = styled.div`
+//     display: flex; 
+//     align-items: center; 
+//     height: 8rem; 
+// `
+// const Div = styled.div`
+    
+//     display: flex; 
+//     padding-left: 1.25rem;
+//     padding-right: 1.25rem; 
+//     justify-content: center; 
+//     align-items: center; 
+
+
+// `
+
+// const Al = styled.a`
+    
+// `
