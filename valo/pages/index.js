@@ -87,7 +87,7 @@ export default function Home() {
     setauth(true)
     //console.log(acc)
 
-    
+      let uio = 31
       axios.post('https://api.thegraph.com/subgraphs/name/vince0656/brand-central',{
         query:
         `{
@@ -113,51 +113,31 @@ export default function Home() {
           let nftContract = new web3.eth.Contract(contractABI, "0x4EA67AeBb61f7Ff6E15E237C8b79D29C41F750fd")
           nftContract.methods.lowerTickerToTokenId(f.id).call()
           .then((r) => {
-            fetch('https://eth-mainnet.alchemyapi.io/v2/__ek_W2lxQBecS34JNKFLtQ__5ZYr1S6/getNFTsForCollection/?contractAddress=0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd&startToken=1&withMetadata=true')
-            .then((r) => r.json())
-          //  console.log(r)
-          console.log(r)
-          
-          //info[r]  = (data.nfts[i-1].media[0]).raw
+            if( r != 0 )
+            {
+              fetch(`https://eth-mainnet.alchemyapi.io/nft/v2/__ek_W2lxQBecS34JNKFLtQ__5ZYr1S6/getNFTMetadata?contractAddress=0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd&tokenId=${r}&tokenType=erc721`)
+              .then((g) => g.json()).then((res) => {
+                //console.log(res.media[0].raw)
+                info[r] = {sub:Tk[r] ,image: res.media[0].raw} 
+                //console.log(res)
+              })
+            }
+            else if(r == 0){
+              info[uio] = {sub:Tk[uio] ,image:"" } 
+              //console.log("uffffff")
+              uio+=1
+            }
           })
-        
         })
+
+        uio = 31
     })
 
 
-    fetch('https://eth-mainnet.alchemyapi.io/v2/__ek_W2lxQBecS34JNKFLtQ__5ZYr1S6/getNFTsForCollection/?contractAddress=0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd&startToken=1&withMetadata=true')
-    .then((r) => r.json())
-    .then((data) => {
-      let nftContract = new web3.eth.Contract(contractABI, "0x4EA67AeBb61f7Ff6E15E237C8b79D29C41F750fd")
-    
-      //data.nfts
-      
-      for (let i = 1; i <= 30; i++) {
-        
-        // nftContract.methods.tokenIdToLowerTicker.call(i ,(e,res) => {
-        //   console.log(res)
-        // })
-        
-        //console.log(data.nfts[i-1])
-        //console.log(i)
-        nftContract.methods.tokenIdToLowerTicker(i).call()
-        .then((r) => {
 
 
-        //  console.log(r)
-        info[i] = {ticker: r, image:(data.nfts[i-1].media[0]).raw}
-        
-        //info[r]  = (data.nfts[i-1].media[0]).raw
-        })
-        //.then(() => console.log(info))
-      }
-
-     
-    })
-      
     
-    
-    
+    console.log(info)
     //console.log(typeof(info))
     
     
