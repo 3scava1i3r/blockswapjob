@@ -35,7 +35,20 @@ export default function Home() {
   const [acc, setacc] = useState("")
   const [info, setinfo] = useState([])
   const [toggleState, setToggleState] = useState(1);
+  const [blockheight, setblockheight] = useState(null)
 
+
+  useEffect(() => {
+    
+    fetch('https://api.covalenthq.com/v1/1/block_v2/latest/?quote-currency=USD&format=JSON&key=ckey_62dc169a991f4d7ebe7dd52afef')
+    .then((r) => r.json())
+    .then((res) => {
+      console.log(res.data.items[0].height)
+      setblockheight(res.data.items[0].height)
+    })
+    
+  }, [info])
+  
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -140,9 +153,6 @@ export default function Home() {
   }
 
 
-  
-  
-
 
 
 
@@ -157,7 +167,7 @@ export default function Home() {
         <a href="#"><img src="https://brand.blockswap.network/static/media/logo-black.13afc5b5.svg"/></a>
         
         
-        <button className="rpgui-button">My Account</button>
+        <button className="rpgui-button" type="button">My Account</button>
         
       </Title>
     </Head>
@@ -166,9 +176,9 @@ export default function Home() {
     {/*in between stats written section */}
 
     
-      <Bod className="rpgui-content">
+      <Bod className="rpgui-content ">
 
-      <div className="rpgui-container framed" >
+      <div className="rpgui-container framed bod" >
         <BigText>Brand Central Auction</BigText>
         <TwoWay>
             <Lside>
@@ -191,27 +201,83 @@ export default function Home() {
             Auction has Ended
         </AucEnd>
 
-        
-
 
         <HR className="golden"/>
 
         <div className="tabdiv">
-          <Spana className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+          <Spana className={toggleState === 1 ? "rpgui-button active-tab" : "tab"}
           onClick={() => toggleTab(1)}>
             Show All</Spana>
-          <Spana className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+          <Spana className={toggleState === 2 ? "rpgui-button active-tab" : "tab"}
           onClick={() => toggleTab(2)}>My Tickers</Spana>
-          <Spana className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+          <Spana className={toggleState === 3 ? "rpgui-button active-tab" : "tab"}
           onClick={() => toggleTab(3)}>Battle Space</Spana>
 
 
-          <div id="Show" className="page">Show All</div>
+          
 
-          <div id="Tick" className="">Ticker</div>
+          {/* <footer className="rpgui-content">
+            <div className="rpgui-container framed sf">
+              <hr className="golden" />
+              <div><a href="https://etherscan.io/address/0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd">Contract Link</a></div>
 
-          <div id="Battle" className="">Battle Space</div>
+            </div>
+          </footer> */}
+          
+          
         </div>
+
+        <div className="rpgui-container framed-golden uppermid">
+
+            <div
+              className={toggleState === 1 ? "active-content " : "content"}
+            >
+              <h2>Show All</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              <h2>My Ticker</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              <h2>My Ticker</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              <h2>My Ticker</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              
+            </div>
+
+            <div
+              className={toggleState === 2 ? " active-content " : "content"}
+            >
+              <h2>My Ticker</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              <h2>My Ticker</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              <h2>My Ticker</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              <h2>My Ticker</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              
+            </div>
+
+            <div
+              className={toggleState === 3 ? "active-content " : "content"}
+            >
+              <h2>Battle</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              
+              
+            </div>
+
+          </div>
+
+        
 
           
          
@@ -339,7 +405,7 @@ const BigText = styled.div`
     margin-bottom: 0.25rem; 
     margin-top: 6rem; 
     font-size: 3rem;
-    line-height: 1; 
+    line-height: 1rem; 
     font-weight: 500;
 
 `
@@ -397,13 +463,12 @@ const AucEnd = styled.button`
     margin-left:auto;
     margin-right:auto; 
     font-size: 0.95rem;
-    line-height: 1.5rem; 
     line-height: 2rem; 
     font-weight: 600; 
     justify-content: center;
     align-items: center; 
-    width: 24rem; 
-    height: 3.5rem; 
+    width: 40%; 
+    
     border-radius: 0.5rem; 
 
 `
@@ -445,8 +510,7 @@ const Mv = styled.div`
 
 const Spana = styled.button`
 
-    justify-content:center;
-    align-items:center;
+    
     margin-left:07%;
 
 `
