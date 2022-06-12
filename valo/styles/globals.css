@@ -1,6 +1,4 @@
 
-
-
 html,
 body {
   
@@ -8,6 +6,8 @@ body {
   padding: 0;
   
   margin: 0;
+  overflow: hidden;
+  
 
   
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -35,6 +35,7 @@ a {
   width: 1080px;
   
   
+  
 }
 
 
@@ -49,6 +50,8 @@ a {
     width: 75%; 
     height: 3.5rem; 
     border-radius: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 
@@ -109,11 +112,12 @@ a {
 }
 
 .bigtext {
-  margin-bottom: 0.25rem; 
+  margin-bottom: 2rem; 
     margin-top: 6rem; 
     font-size: 3rem;
     line-height: 1rem; 
     font-weight: 500;
+
 }
 
 
@@ -136,6 +140,7 @@ a {
 .lside {
   
   max-width:490px;
+  text-align: left;
   
 }
 
@@ -143,6 +148,8 @@ a {
 .rside {
   
   max-width:490px;
+  text-align: left;
+
   
 }
 
@@ -158,6 +165,7 @@ a {
 .aucend {
   display: block; 
   position: relative;
+  
   
 }
 

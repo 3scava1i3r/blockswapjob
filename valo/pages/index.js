@@ -1,14 +1,13 @@
 import contractABI from "../abi/contract.json"
 import React, { useState,useEffect } from 'react';
-import Box from "../components/Box";
 
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
-import Footer from "../components/Footer";
+//import Footer from "../components/Footer";
 
-import styled from "styled-components"
+//import styled from "styled-components"
 import axios from "axios";
 
 
@@ -203,21 +202,23 @@ export default function Home() {
 
   return (
     <>
-      <div className="outer">
+      
 
-      <div className="navb rpgui-container">
-        <div className="title rpgui-content">
+      
+      <div className="cc ">
+
+      <div className="navb nes-container is-rounded">
+        <div className="title">
         <a href="#" ><img src="https://brand.blockswap.network/static/media/logo-black.13afc5b5.svg"/></a>
         
         
-        <button className="rpgui-button " type="button" onClick={ff}>My Account</button>
+        <button className="nes-btn " type="button" onClick={ff}>My Account</button>
         </div>
       </div>
-      <div className="cc">
 
-      <div className="bodd rpgui-content">
+      <div className="bodd">
           
-          <div className="rpgui-container framed upg" >
+          <div className="nes-container is-rounded upg" >
             <div className="bigtext">Brand Central Auction</div>
             <div className="twoway">
                 <div className="lside">
@@ -236,7 +237,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="">
-            <button className="rpgui-button aucend" disabled type="button">
+            <button className="nes-btn is-disabled aucend" type="button">
                 Auction has Ended
             </button>
             </div>
@@ -246,24 +247,18 @@ export default function Home() {
             <hr className="golden"/>
     
             <div className="tabdiv">
-              <button className={toggleState === 1 ? "rpgui-button active-tab" : "tab"}
+              <button className={toggleState === 1 ? "nes-btn active-tab" : "nes-btn tab"}
               onClick={() => toggleTab(1)}>
                 Show All</button>
-              <button className={toggleState === 2 ? "rpgui-button active-tab" : "tab"}
+              <button className={toggleState === 2 ? "nes-btn active-tab" : "nes-btn tab"}
               onClick={() => toggleTab(2)}>My Tickers</button>
-              <button className={toggleState === 3 ? "rpgui-button active-tab" : "tab"}
+              <button className={toggleState === 3 ? "nes-btn active-tab" : "nes-btn tab"}
               onClick={() => toggleTab(3)}>Battle Space</button>
         
               
             </div>
     
-            <div className="bigtext">Brand Central Auction</div>
-    
-            <div className="bigtext">Brand Central Auction</div>
-    
-            <div className="bigtext">Brand Central Auction</div>
-    
-            <div className="bigtext">Brand Central Auction</div>
+            
     
     
             {/* <div>
@@ -271,11 +266,23 @@ export default function Home() {
             </div> */}
     
             
-            {/* <div className="rpgui-container framed-golden uppermid">
+            <div className="nes-container is-rounded uppermid">
     
                 <div
                   className={toggleState === 1 ? "active-content " : "content"}
                 >
+                  <h2>Show All</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+
+                  <h2>Show All</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+
+                  <h2>Show All</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+
                   <h2>Show All</h2>
                   <hr />
                   <h3>{blockheight}</h3>
@@ -286,6 +293,19 @@ export default function Home() {
                 <div
                   className={toggleState === 2 ? " active-content " : "content"}
                 >
+                  <h2>My Ticker</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+
+                  <h2>My Ticker</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+                  <h2>My Ticker</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+                  <h2>My Ticker</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
                   <h2>My Ticker</h2>
                   <hr />
                   <h3>{blockheight}</h3>
@@ -300,19 +320,31 @@ export default function Home() {
                   <h2>Battle</h2>
                   <hr />
                   <h3>{blockheight}</h3>
+                  <h2>Battle</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+                  <h2>Battle</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+
+                  <h2>Battle</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
+                  <h2>Battle</h2>
+                  <hr />
+                  <h3>{blockheight}</h3>
                   
                 </div>
-              </div> */}
+              </div>
     
     
               {/* <footer className="end">
-                <div className="rpgui-content foot"><a href="https://etherscan.io/address/0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd">Contract</a></div>
+                <div className="nes-content foot"><a href="https://etherscan.io/address/0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd">Contract</a></div>
               </footer> */}
         </div>
     
           </div>
 
-      </div>
       </div>
     
       
