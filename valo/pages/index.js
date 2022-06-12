@@ -9,7 +9,7 @@ import Portis from "@portis/web3";
 
 //import styled from "styled-components"
 import axios from "axios";
-
+import Box from "../component/Box";
 
 
 
@@ -37,6 +37,8 @@ export default function Home() {
   const [toggleState, setToggleState] = useState(1);
   const [blockheight, setblockheight] = useState(null)
   const [Tk, setTk] = useState([])
+  const [loading, setloading] = useState(undefined)
+
 
   useEffect(() => {
     
@@ -46,48 +48,69 @@ export default function Home() {
       console.log(res.data.items[0].height)
       setblockheight(res.data.items[0].height)
     })
+
+
+
     
   }, [info])
-  
-  const toggleTab = (index) => {
-    setToggleState(index);
-  };
 
-  //let authenticated = false
-  
 
-  
+  // useEffect(() => {
 
-  
-  //const info = []
-  
-  const ff = async() => {
+  //   let uio = 31
+  //   axios.post('https://api.thegraph.com/subgraphs/name/vince0656/brand-central',{
+  //     query:
+  //     `{
+  //     tickers {
+  //         id
+  //         shbBid
+  //         bidder
+  //         biddingEnd
+  //         numberOfBidsReceived
+  //         nftClaimed
+  //       }
+  //     }
+  //     `
+  // }).then((res) => {
+  //     //console.log(res.data.data.tickers)
 
+  //     setTk(res.data.data.tickers)
+
+
+  //     res.data.data.tickers.map((f,i) => {
+  //       //console.log(f)
+
+        
+  //       nftContract.methods.lowerTickerToTokenId(f.id).call()
+  //       .then((r) => {
+  //         if( r != 0 )
+  //         {
+  //           fetch(`https://eth-mainnet.alchemyapi.io/nft/v2/__ek_W2lxQBecS34JNKFLtQ__5ZYr1S6/getNFTMetadata?contractAddress=0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd&tokenId=${r}&tokenType=erc721`)
+  //           .then((g) => g.json()).then((res) => {
+  //             //console.log(res.media[0].raw)
+  //             info[r] = {sub:Tk[r] ,image: res.media[0].raw} 
+  //             //console.log(res)
+  //           })
+  //         }
+  //         else if(r == 0){
+  //           info[uio] = {sub:Tk[uio] ,image:"" } 
+  //           //console.log("uffffff")
+  //           uio+=1
+  //         }
+  //       })
+  //     })
+
+  //     uio = 31
+  // })
     
-    const web3Modal = new Web3Modal({
-      providerOptions, // required
-      //displayNoInjectedProvider: true,
-      //disableInjectedProvider: true,
-    });
+  
     
-    const provider = await web3Modal.connect();
-    console.log(provider)
-    const web3 = new Web3(provider);
-    
-    //const d = web3.currentProvider.selectedAddress
-    const accounts = await web3.eth.getAccounts();
-    // if(web3.currentProvider === WalletConnectProvider){
-    //   setacc(d.accounts[0])
-    // }
-    // else if(web3.currentProvider === Proxy){
-    //   setacc(d.selectedAddress)
-    // }
-    //console.log(d)
-    setacc(accounts[0])
-    setauth(true)
-    //console.log(acc)
+  //}, [acc])
+  
+  
+  useEffect(() => {
 
-      let uio = 31
+    setTimeout(() => {
       axios.post('https://api.thegraph.com/subgraphs/name/vince0656/brand-central',{
         query:
         `{
@@ -105,9 +128,56 @@ export default function Home() {
         //console.log(res.data.data.tickers)
   
         setTk(res.data.data.tickers)
+        setloading(true)
   
+    })
+    }, 2000);
+    
+  }, [acc])
   
-        res.data.data.tickers.map((f,i) => {
+
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
+
+
+
+  
+  //const info = []
+  
+  const ff = async() => {
+
+    
+    const web3Modal = new Web3Modal({
+      providerOptions, // required
+      //displayNoInjectedProvider: true,
+      //disableInjectedProvider: true,
+    });
+    
+    const provider = await web3Modal.connect();
+    //console.log(provider)
+    const web3 = new Web3(provider);
+    
+    //const d = web3.currentProvider.selectedAddress
+    const accounts = await web3.eth.getAccounts();
+    // if(web3.currentProvider === WalletConnectProvider){
+    //   setacc(d.accounts[0])
+    // }
+    // else if(web3.currentProvider === Proxy){
+    //   setacc(d.selectedAddress)
+    // }
+    //console.log(d)
+    setacc(accounts[0])
+    setauth(true)
+
+    let nftContract = new web3.eth.Contract(contractABI, "0x4EA67AeBb61f7Ff6E15E237C8b79D29C41F750fd")
+    //console.log(acc)
+
+    let uio = 31
+      setTimeout(() => {
+
+        Tk.map((f,i) => {
           //console.log(f)
   
           let nftContract = new web3.eth.Contract(contractABI, "0x4EA67AeBb61f7Ff6E15E237C8b79D29C41F750fd")
@@ -131,9 +201,10 @@ export default function Home() {
         })
 
         uio = 31
-    })
-
-
+        
+      }, 2500);
+        
+    
 
 
     
@@ -155,6 +226,9 @@ export default function Home() {
   // })
 
   console.log(acc)
+
+
+
   const signout = () => {
 
     const web3Modal = new Web3Modal({
@@ -192,145 +266,145 @@ export default function Home() {
         <a href="#" ><img src="https://brand.blockswap.network/static/media/logo-black.13afc5b5.svg"/></a>
         
         
-        <button className="nes-btn " type="button" onClick={ff}>My Account</button>
+        
+        {(acc) ?
+        (<button className="nes-btn" type="button" onClick={signout}>SignOut</button>) :
+        (<button className="nes-btn" type="button" onClick={ff}>Unlock Wallet</button>)}
+        
         </div>
       </div>
-
-      <div className="bodd">
+      {(acc) ? (
+        <div className="bodd">
           
-          <div className="nes-container is-rounded upg" >
-            <div className="bigtext">Brand Central Auction</div>
-            <div className="twoway">
-                <div className="lside">
-                  <div className="ulist">
-                    <li>Blockswap is giving the first opportunity to claim a StakeHouse name on mainnet to SHB holders.</li>
-                    <li>The auction will run for 5 days.</li>
-                    <li>Each day 10 StakeHouse names can be proposed on a first come first serve basis.</li>
-                  </div>
-                </div>
-                <div className="rside">
-                  <div className="ulist">
-                    <li>In the last 200 blocks (approx 50 minutes) each additional bid will increase the time remaining by 100 blocks (approx 25 minutes) until someone loses the battle.</li>
-                    <li>Minimum Bid increase is 2 SHB.</li>
-                    <li>Additional details on the auction <a href="https://blog.blockswap.network/brand-central-auction-how-to-guide-3ac1f66564db">here</a>. Read <a href="https://blockswap.notion.site/blockswap/FAQ-Brand-Central-Auction-a5924cb32a114bbba53c0b27a77e1230">FAQ</a> here.</li>
-                  </div>
-                </div>
-            </div>
-            <div className="">
-            <button className="nes-btn is-disabled aucend" type="button">
-                Auction has Ended
-            </button>
-            </div>
-            
-    
-    
-            <hr className="golden"/>
-    
-            <div className="tabdiv">
-              <button className={toggleState === 1 ? "nes-btn active-tab" : "nes-btn tab"}
-              onClick={() => toggleTab(1)}>
-                Show All</button>
-              <button className={toggleState === 2 ? "nes-btn active-tab" : "nes-btn tab"}
-              onClick={() => toggleTab(2)}>My Tickers</button>
-              <button className={toggleState === 3 ? "nes-btn active-tab" : "nes-btn tab"}
-              onClick={() => toggleTab(3)}>Battle Space</button>
-        
-              
-            </div>
-    
-            
-    
-    
-            {/* <div>
-              
-            </div> */}
-    
-            
-            <div className="nes-container is-rounded uppermid">
-    
-                <div
-                  className={toggleState === 1 ? "active-content " : "content"}
-                >
-                  <h2>Show All</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-
-                  <h2>Show All</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-
-                  <h2>Show All</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-
-                  <h2>Show All</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  
-                  
-                </div>
-    
-                <div
-                  className={toggleState === 2 ? " active-content " : "content"}
-                >
-                  <h2>My Ticker</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-
-                  <h2>My Ticker</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  <h2>My Ticker</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  <h2>My Ticker</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  <h2>My Ticker</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  
-                  
-                  
-                </div>
-    
-                <div
-                  className={toggleState === 3 ? "active-content " : "content"}
-                >
-                  <h2>Battle</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  <h2>Battle</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  <h2>Battle</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-
-                  <h2>Battle</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  <h2>Battle</h2>
-                  <hr />
-                  <h3>{blockheight}</h3>
-                  
+        <div className="nes-container is-rounded upg" >
+          <div className="bigtext">Brand Central Auction</div>
+          <div className="twoway">
+              <div className="lside">
+                <div className="ulist">
+                  <li>Blockswap is giving the first opportunity to claim a StakeHouse name on mainnet to SHB holders.</li>
+                  <li>The auction will run for 5 days.</li>
+                  <li>Each day 10 StakeHouse names can be proposed on a first come first serve basis.</li>
                 </div>
               </div>
-    
-    
-              {/* <footer className="end">
-                <div className="nes-content foot"><a href="https://etherscan.io/address/0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd">Contract</a></div>
-              </footer> */}
-        </div>
-    
+              <div className="rside">
+                <div className="ulist">
+                  <li>In the last 200 blocks (approx 50 minutes) each additional bid will increase the time remaining by 100 blocks (approx 25 minutes) until someone loses the battle.</li>
+                  <li>Minimum Bid increase is 2 SHB.</li>
+                  <li>Additional details on the auction <a href="https://blog.blockswap.network/brand-central-auction-how-to-guide-3ac1f66564db">here</a>. Read <a href="https://blockswap.notion.site/blockswap/FAQ-Brand-Central-Auction-a5924cb32a114bbba53c0b27a77e1230">FAQ</a> here.</li>
+                </div>
+              </div>
           </div>
+          <div className="">
+          <button className="nes-btn is-disabled aucend" type="button">
+              Auction has Ended
+          </button>
+          </div>
+          
+  
+          
+
+
+
+          <hr/>
+
+          
+  
+          <div className="tabdiv">
+            <button className={toggleState === 1 ? "nes-btn active-tab" : "nes-btn tab"}
+            onClick={() => toggleTab(1)}>
+              Show All</button>
+            <button className={toggleState === 2 ? "nes-btn active-tab" : "nes-btn tab"}
+            onClick={() => toggleTab(2)}>My Tickers</button>
+            <button className={toggleState === 3 ? "nes-btn active-tab" : "nes-btn tab"}
+            onClick={() => toggleTab(3)}>Battle Space</button>
+      
+            
+          </div>
+  
+  
+          
+
+          {(!loading) ?(
+            <div>...loading man</div>
+            ): (
+              <>
+              
+              <div className="nes-container is-rounded uppermid">
+  
+            <div
+              className={toggleState === 1 ? "active-content" : "content"}
+            >
+              
+              
+              {info.map((r) => {
+                return (
+                  
+                    <Box all={r}/>
+                  
+                )
+              })}
+              
+              <h2>Show All</h2>
+              <h2>{acc}</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+
+              <h2>Show All</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+
+              <h2>Show All</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+
+              <h2>Show All</h2>
+              <hr />
+              <h3>{blockheight}</h3>
+              
+              
+            </div>
+
+            <div
+              className={toggleState === 2 ? " active-content " : "content"}
+            >
+              <hr />
+              <h3>{blockheight}</h3>
+              
+              
+              
+            </div>
+
+            <div
+              className={toggleState === 3 ? "active-content " : "content"}
+            >
+              <hr />
+              <h3>{blockheight}</h3>
+              
+              
+            </div>
+          </div>
+              </>
+        
+          )
+           }
+          
+  
+  
+            <footer className="end">
+              <div className="nes-content foot"><a href="https://etherscan.io/address/0x4ea67aebb61f7ff6e15e237c8b79d29c41f750fd">Contract</a></div>
+            </footer>
+          </div>
+  
+        </div>
+
+      ) : (<button className="nes-btn page-wallet" type="button" onClick={ff} >Unlock Wallet</button>)}
+      
+
 
       </div>
     
       
 
-      
-      
     
     </>
   )

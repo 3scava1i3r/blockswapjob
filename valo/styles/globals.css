@@ -200,8 +200,10 @@ margin-left:07%;
 }
 .end {
   display: flex; 
-align-items: center; 
-height: 8rem; 
+  align-items: center; 
+  margin-right: auto;
+  margin-left: auto;
+  height: 8rem; 
 
 }
 
@@ -228,3 +230,11 @@ left: 20rem;
 
 
 
+.card-image {
+  width: 100px;
+  height: 100px;
+}
+
+.page-wallet {
+  top: 10rem;
+}
