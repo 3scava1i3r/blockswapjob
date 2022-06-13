@@ -196,7 +196,7 @@ margin-left:07%;
 
 .active-content{
   display: flex;
-  display: flex;
+  
     justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
@@ -204,11 +204,12 @@ margin-left:07%;
 
 
 .end {
-  display: flex; 
+  display: block; 
   align-items: center; 
   margin-right: auto;
   margin-left: auto;
   height: 8rem; 
+  margin-top: 2rem;
 
 }
 
@@ -236,8 +237,14 @@ left: 20rem;
 
 
 .card-image {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 120px;
+  
+}
+
+.cardimgtext {
+  height: 140px;
+  width: 200px;
 }
 
 .page-wallet {
@@ -248,14 +255,42 @@ left: 20rem;
 
 
 .box-out {
-  width: 16%;
-  margin: 0 1rem;
+  width: 20%;
+  margin: 2rem 1rem;
+  height: 20rem;
+  font-size: 0.5rem;
+  text-align: left;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.box-in {
+
 }
 
 
 .he3 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15rem;
+  display: block;
+  
+  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.conl {
+  left: 5px;
+}
+
+.he2 {
+  display: block;
+}
+
+.longadd {
+  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

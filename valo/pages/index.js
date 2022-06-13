@@ -110,7 +110,7 @@ export default function Home() {
   
   useEffect(() => {
 
-    setTimeout(() => {
+    
       axios.post('https://api.thegraph.com/subgraphs/name/vince0656/brand-central',{
         query:
         `{
@@ -131,7 +131,6 @@ export default function Home() {
         setloading(true)
   
     })
-    }, 2000);
     
   }, [acc])
   
@@ -192,7 +191,7 @@ export default function Home() {
                 //console.log(res)
               })
             }
-            else if(r == 0){
+            else if(r == 0 && uio < 34){
               info[uio] = {sub:Tk[uio] ,image:"" } 
               //console.log("uffffff")
               uio+=1
@@ -201,16 +200,12 @@ export default function Home() {
         })
 
         uio = 31
-        
-      }, 2500);
-        
-    
-
+        //setloading(false)
+      }, 2200);
 
     
     console.log(info)
     //console.log(typeof(info))
-    
     
   }
   console.log(info)
@@ -224,9 +219,6 @@ export default function Home() {
   //   )
     
   // })
-
-  console.log(acc)
-
 
 
   const signout = () => {
@@ -246,13 +238,9 @@ export default function Home() {
     //console.log(auth)
   }
 
-  
 
 
   //console.log(Tk)
-
-
-
 
   return (
     <>
@@ -325,11 +313,11 @@ export default function Home() {
           
 
           {(!loading) ?(
-            <div>...loading man</div>
+            <div>...loading pls wait</div>
             ): (
               <>
               
-              <div className="nes-container is-rounded uppermid">
+            <div className="nes-container is-rounded uppermid">
   
             <div
               className={toggleState === 1 ? "active-content" : "content"}
@@ -343,31 +331,27 @@ export default function Home() {
                 )
               })}
               
-              
+              </div>
               <hr />
-              <h3 className="he3">Current Block:{blockheight}</h3>
+              <div >
+                <h3 className="he3">Current Block:{blockheight}</h3>
+              </div>
               
               
-            </div>
+              
+            
 
             <div
               className={toggleState === 2 ? " active-content " : "content"}
             >
-              <hr />
-              <h3>{blockheight}</h3>
+              </div>
               
-              
-              
-            </div>
 
             <div
               className={toggleState === 3 ? "active-content " : "content"}
             >
-              <hr />
-              <h3>{blockheight}</h3>
+              </div>
               
-              
-            </div>
           </div>
               </>
         
