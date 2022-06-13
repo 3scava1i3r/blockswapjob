@@ -27,6 +27,7 @@
 ## Future plans 😇😇
 - addition of a dark mode 
 - more wallet support
+- ENS support 
 
 
 
