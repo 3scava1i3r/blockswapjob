@@ -335,7 +335,6 @@ export default function Home() {
               className={toggleState === 1 ? "active-content" : "content"}
             >
               
-              
               {info.map((r,i) => {
                 return (
                   
@@ -344,22 +343,9 @@ export default function Home() {
                 )
               })}
               
-              <h2>Show All</h2>
-              <h2>{acc}</h2>
+              
               <hr />
-              <h3>{blockheight}</h3>
-
-              <h2>Show All</h2>
-              <hr />
-              <h3>{blockheight}</h3>
-
-              <h2>Show All</h2>
-              <hr />
-              <h3>{blockheight}</h3>
-
-              <h2>Show All</h2>
-              <hr />
-              <h3>{blockheight}</h3>
+              <h3 className="he3">Current Block:{blockheight}</h3>
               
               
             </div>

@@ -98,7 +98,7 @@ a {
 
 
 .bodd {
-  display: flex; 
+    display: flex; 
     font-size: 0.92rem;
     line-height: 1.75rem; 
     flex-direction: column; 
@@ -159,6 +159,7 @@ a {
 
 .upg {
   margin-top: 8rem;
+  width: 1200px;
 }
 
 
@@ -194,10 +195,14 @@ margin-left:07%;
 }
 
 .active-content{
-  display: block;
-  
-
+  display: flex;
+  display: flex;
+    justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
+
+
 .end {
   display: flex; 
   align-items: center; 
@@ -237,4 +242,20 @@ left: 20rem;
 
 .page-wallet {
   top: 10rem;
+}
+
+
+
+
+.box-out {
+  width: 16%;
+  margin: 0 1rem;
+}
+
+
+.he3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15rem;
 }
