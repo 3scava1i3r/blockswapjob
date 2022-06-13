@@ -2,7 +2,8 @@
 
 ## Initial thought ✨✨
 - I had to figure out the logic between ticker and metadata as no token/image URI was given
-- subgraph fetched data
+- subgraph fetched data had tickers and contract metadata had different names
+- broken URI even in contract code
 
 
 ## Mistakes 💫💫
@@ -17,7 +18,7 @@
 
 ## Renders made 🏄‍♂️🏄‍♂️
 - changed the enntire logic to start from subgraph
-- started with fetching all data from subgraph and then using tickertotokenId to get token id then use alchemi api to get necessary metatdat of image.
+- started with fetching all data from subgraph and then using tickertotokenId to get token id from ticker recieved in the previous step,followed by using alchemi api to get necessary metatdata of image in the card.
 - changing all code from web3-react and just using web3modal  for multi wallet support
 - changed the UI to what i am used to
 
@@ -25,7 +26,7 @@
 
 ## Future plans 😇😇
 - addition of a dark mode 
-- get more wallet support
+- more wallet support
 
 
 
