@@ -37,11 +37,12 @@ export default function Home() {
   const [toggleState, setToggleState] = useState(1);
   const [blockheight, setblockheight] = useState(null)
   const [Tk, setTk] = useState([])
-  const [loading, setloading] = useState(undefined)
+  const [loading, setloading] = useState(false)
 
 
   useEffect(() => {
     
+    setloading(true)
     fetch('https://api.covalenthq.com/v1/1/block_v2/latest/?quote-currency=USD&format=JSON&key=ckey_62dc169a991f4d7ebe7dd52afef')
     .then((r) => r.json())
     .then((res) => {
@@ -110,7 +111,7 @@ export default function Home() {
   
   useEffect(() => {
 
-    
+      setloading(true)
       axios.post('https://api.thegraph.com/subgraphs/name/vince0656/brand-central',{
         query:
         `{
@@ -128,7 +129,7 @@ export default function Home() {
         //console.log(res.data.data.tickers)
   
         setTk(res.data.data.tickers)
-        setloading(true)
+        setloading(false)
   
     })
     
@@ -174,7 +175,8 @@ export default function Home() {
     //console.log(acc)
 
     let uio = 31
-      setTimeout(() => {
+      
+        setloading(true)
 
         Tk.map((f,i) => {
           //console.log(f)
@@ -198,10 +200,11 @@ export default function Home() {
             }
           })
         })
+        setloading(false)
 
         uio = 31
-        //setloading(false)
-      }, 2200);
+        
+      
 
     
     console.log(info)
@@ -288,14 +291,7 @@ export default function Home() {
           </button>
           </div>
           
-  
-          
-
-
-
-          <hr/>
-
-          
+          <hr/> 
   
           <div className="tabdiv">
             <button className={toggleState === 1 ? "nes-btn active-tab" : "nes-btn tab"}
@@ -312,7 +308,7 @@ export default function Home() {
   
           
 
-          {(!loading) ?(
+          {(loading) ?(
             <div>...loading pls wait</div>
             ): (
               <>
