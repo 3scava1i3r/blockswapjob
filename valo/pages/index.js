@@ -336,10 +336,10 @@ export default function Home() {
             >
               
               
-              {info.map((r) => {
+              {info.map((r,i) => {
                 return (
                   
-                    <Box key={r.all.sub.id} all={r}/>
+                    <Box key={i} all={r}/>
                   
                 )
               })}
