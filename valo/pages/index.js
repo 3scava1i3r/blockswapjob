@@ -171,7 +171,7 @@ export default function Home() {
     setacc(accounts[0])
     setauth(true)
 
-    let nftContract = new web3.eth.Contract(contractABI, "0x4EA67AeBb61f7Ff6E15E237C8b79D29C41F750fd")
+    //let nftContract = new web3.eth.Contract(contractABI, "0x4EA67AeBb61f7Ff6E15E237C8b79D29C41F750fd")
     //console.log(acc)
 
     let uio = 31
@@ -339,7 +339,7 @@ export default function Home() {
               {info.map((r) => {
                 return (
                   
-                    <Box all={r}/>
+                    <Box key={r.all.sub.id} all={r}/>
                   
                 )
               })}
