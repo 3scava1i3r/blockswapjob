@@ -7,7 +7,7 @@ function Box(props) {
     console.log(props.all)
     return (
         <div>
-            <Image src={props.all.image} className="card-image"/>
+            <img src={props.all.image} className="card-image"/>
             <div className="nes-container is-rounded is-dark">
                
             </div>
